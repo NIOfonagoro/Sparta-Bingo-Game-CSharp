@@ -10,7 +10,7 @@ namespace Bingo_App
         {
             int correctNumber = SetNumber(1,10);
 
-
+            
 
             int[,] scoreCard = new int[5, 5];
             Dictionary<int, int> bingoNumbers = new Dictionary<int, int>();
@@ -120,12 +120,11 @@ namespace Bingo_App
                 }
             }
 
-            foreach (KeyValuePair<int, int> kvp in bingoNumbers)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            }
-            //var list = bingoNumbers.ToList();
-
+            //foreach (KeyValuePair<int, int> kvp in bingoNumbers)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            //}
+            
 
             // Host selects random numbers
 
@@ -141,10 +140,10 @@ namespace Bingo_App
 
             int picked;
             bool horizontalFour = false;
-            bool Edges = false;
-            bool FullHouse = false;
+            bool corners = false;
+            bool fullHouse = false;
 
-            while(horizontalFour == false)
+            while(horizontalFour == false && corners == false)
             {
                 picked = SetNumber(0, (listOfNumbers.Count - 1));
                 Console.WriteLine("And the number drawn is " + listOfNumbers[picked]);
@@ -164,22 +163,66 @@ namespace Bingo_App
                     && MatchedNumbers.Contains(20))
                 {
                     horizontalFour = true;
+                    Console.WriteLine("Bingo, Top Row");
                 }
+                if (MatchedNumbers.Contains(1)
+                    && MatchedNumbers.Contains(6)
+                    && MatchedNumbers.Contains(11)
+                    && MatchedNumbers.Contains(16)
+                    && MatchedNumbers.Contains(21))
+                {
+                    horizontalFour = true;
+                    Console.WriteLine("Bingo, Second Row");
+                }
+                
+                if (MatchedNumbers.Contains(2)
+                    && MatchedNumbers.Contains(7)
+                    && MatchedNumbers.Contains(12)
+                    && MatchedNumbers.Contains(17)
+                    && MatchedNumbers.Contains(22))
+                {
+                    horizontalFour = true;
+                    Console.WriteLine("Bingo, Third Row");
+                }
+                
+                if (MatchedNumbers.Contains(3)
+                    && MatchedNumbers.Contains(8)
+                    && MatchedNumbers.Contains(13)
+                    && MatchedNumbers.Contains(18)
+                    && MatchedNumbers.Contains(23))
+                {
+                    horizontalFour = true;
+                    Console.WriteLine("Bingo, Third Row");
+                }
+
+                if (MatchedNumbers.Contains(4)
+                    && MatchedNumbers.Contains(9)
+                    && MatchedNumbers.Contains(14)
+                    && MatchedNumbers.Contains(19)
+                    && MatchedNumbers.Contains(24))
+                {
+                    horizontalFour = true;
+                    Console.WriteLine("Bingo, Bottom Row");
+                }
+
+                if (MatchedNumbers.Contains(0)
+                    && MatchedNumbers.Contains(4)
+                    && MatchedNumbers.Contains(20)
+                    && MatchedNumbers.Contains(24))
+                {
+                    corners = true;
+                    Console.WriteLine("Bingo, Four Corners");
+                }
+                
 
             }
 
-
+            //MatchedNumbers.ForEach(Console.WriteLine);
 
 
             Console.ReadKey();       
            
 
-        }
-
-        static int HostSelectsNumber()
-        {
-            int selectedNumber = SetNumber(1, 75);
-            return selectedNumber;
         }
 
         static int SetNumber(int minNum, int maxNum)
@@ -191,6 +234,4 @@ namespace Bingo_App
 
 
     }
-  
-
 }
